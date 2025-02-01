@@ -1,3 +1,9 @@
+security:
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/manager, roles: ROLE_MANAGER }
+        - { path: ^/dashboard, roles: ROLE_USER }
+
 _security_logout:
     resource: security.route_loader.logout
     type: service
