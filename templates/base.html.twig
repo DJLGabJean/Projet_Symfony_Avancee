@@ -12,6 +12,10 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('admin_dashboard') }}">Utilisateurs</a></li>
+            {% endif %}
+        {% endblock %}
     </body>
 </html>
