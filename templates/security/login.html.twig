@@ -3,39 +3,85 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+<div class="flex flex-col items-center justify-center h-screen bg-white">
+  <div class="w-full max-w-md p-8 space-y-4 bg-gray-100 rounded-lg shadow-2xl">
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
+    <!-- Titre -->
+    <h2 class="text-3xl font-bold text-center text-gray-900">Log in</h2>
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="username">Email</label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-        <label for="password">Password</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+    <!-- Formulaire de connexion -->
+    <form method="post" class="space-y-4">
+      {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+      {% endif %}
 
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
+      <!-- Champ E-mail -->
+      <div class="space-y-2">
+        <label class="text-sm font-medium leading-none" for="inputEmail">E-Mail Address</label>
+        <input
+          type="text"
+          name="_username"
+          id="inputEmail"
+          class="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm bg-gray-200 text-gray-900 placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+          autocomplete="email"
+          required
+          autofocus
+        />
+      </div>
 
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
+      <!-- Champ Mot de passe -->
+      <div class="space-y-2">
+        <label class="text-sm font-medium leading-none" for="inputPassword">Password</label>
+        <input
+          type="password"
+          name="_password"
+          id="inputPassword"
+          class="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm bg-gray-200 text-gray-900 placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+          autocomplete="current-password"
+          required
+        />
+      </div>
 
-            <div class="checkbox mb-3">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
-            </div>
-        #}
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
+      <!-- Bouton de connexion -->
+      <button
+        type="submit"
+        class="w-full h-10 px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+        {% if app.user is not null %}disabled{% endif %}
+      >
+        Login
+      </button>
     </form>
+
+    <!-- Bouton d'accueil -->
+    <div id="buttonHome" class="mt-4">
+      <a
+        href="{{ path('app_home') }}"
+        class="inline-flex justify-center w-full h-10 px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+      >
+        Return to home
+      </a>
+    </div>
+
+    <!-- Bouton de déconnexion (si connecté) -->
+    {% if app.user is not null %}
+      <div class="mt-4">
+        <p class="mb-2">You are signed in as {{ app.user.email }}</p>
+        <a
+          href="{{ path('app_logout') }}"
+          class="inline-flex justify-center w-full h-10 px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+        >
+          Logout
+        </a>
+      </div>
+
+      <!-- Cache les boutons non pertinents -->
+      <style>
+        #buttonHome { display: none; }
+        button[type="submit"] { display: none; }
+      </style>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}
