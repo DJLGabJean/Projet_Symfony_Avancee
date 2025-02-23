@@ -21,10 +21,11 @@ class UserController extends AbstractController
     {
         return $this->render('admin/user/view.html.twig', [
             'users' => $userRepository->findAll(),
+            'newId' => $userRepository->getNewId()
         ]);
     }
 
-    #[Route('/new', name: 'admin_user_new', methods: ['GET', 'POST'])]
+    #[Route('/admin/user/add/{newId}', name: 'admin_user_add', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
@@ -38,15 +39,15 @@ class UserController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('admin_user_index');
+            return $this->redirectToRoute('admin_user_list');
         }
 
-        return $this->render('admin/user/new.html.twig', [
+        return $this->render('admin/user/add.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'admin_user_edit', methods: ['GET', 'POST'])]
+    #[Route('/admin/user/edit/{id}', name: 'admin_user_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, User $user, EntityManagerInterface $em): Response
     {
@@ -60,7 +61,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
 
-            return $this->redirectToRoute('admin_user_index');
+            return $this->redirectToRoute('admin_user_list');
         }
 
         return $this->render('admin/user/edit.html.twig', [
@@ -69,7 +70,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'admin_user_delete', methods: ['POST'])]
+    #[Route('/admin/user/edit/{id}', name: 'admin_user_delete', methods: ['DELETE'])]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, User $user, EntityManagerInterface $em): Response
     {
@@ -80,6 +81,6 @@ class UserController extends AbstractController
             $em->flush();
         }
 
-        return $this->redirectToRoute('admin_user_index');
+        return $this->redirectToRoute('admin_user_list');
     }
 }

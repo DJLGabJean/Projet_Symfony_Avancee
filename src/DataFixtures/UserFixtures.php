@@ -22,6 +22,7 @@ class UserFixtures extends Fixture
             ['email' => 'admin@example.com', 'firstname' => 'Martin', 'lastname' => 'Dubois', 'roles' => ['ROLE_ADMIN'], 'password' => 'admin123'],
             ['email' => 'manager@example.com', 'firstname' => 'Sophie', 'lastname' => 'Dupont',  'roles' => ['ROLE_MANAGER'], 'password' => 'manager123'],
             ['email' => 'user@example.com', 'firstname' => 'Thomas', 'lastname' => 'Lemoine', 'roles' => ['ROLE_USER'], 'password' => 'user123'],
+            ['email' => 'user2@example.com', 'firstname' => 'Julie', 'lastname' => 'Lefevre', 'roles' => ['ROLE_USER'], 'password' => 'user456'],
         ];
 
         foreach ($usersData as $data) {
