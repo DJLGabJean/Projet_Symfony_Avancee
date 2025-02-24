@@ -29,19 +29,6 @@
             {% endfor %}
         {% endfor %}
 
-        {# Search Bar #}
-        <div class="mb-6">
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <i class="fas fa-search text-gray-400"></i>
-                </div>
-                <input type="text" 
-                       id="searchUser"
-                       class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                       placeholder="Rechercher un utilisateur...">
-            </div>
-        </div>
-
         {# Users Table #}
         <div class="bg-white shadow overflow-hidden sm:rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
@@ -91,19 +78,4 @@
             </table>
         </div>
     </main>
-{% endblock %}
-
-{% block javascripts %}
-{{ parent() }}
-<script>
-document.getElementById('searchUser').addEventListener('input', function(e) {
-    const searchText = e.target.value.toLowerCase();
-    const rows = document.querySelectorAll('tbody tr');
-    
-    rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(searchText) ? '' : 'none';
-    });
-});
-</script>
 {% endblock %}
