@@ -54,7 +54,7 @@ php bin/console tailwind:build
 
 Enfin, ils ne vous reste plus qu'à exécuter XAMPP pour pouvoir accéder au site web !!!!
 
-D'autres trucs vont venir au fur à me sur de la journée...
+D'autres choses vont venir au fur à mesure de la journée...
 
 
 
