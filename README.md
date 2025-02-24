@@ -45,3 +45,18 @@ Après, exécuter la commande pour construire les fixtures de toutes les entité
 ```bash
 php bin/console doctrine:fixtures:load
 ```
+
+De même, exécuter la commande pour construire les assets de TailwindCSS :
+
+```bash
+php bin/console tailwind:build
+```
+
+Enfin, ils ne vous reste plus qu'à exécuter XAMPP pour pouvoir accéder au site web !!!!
+
+D'autres trucs vont venir au fur à me sur de la journée...
+
+
+
+
+
