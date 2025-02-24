@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: skyblue;
+.card {
+    @apply bg-white overflow-hidden shadow-sm rounded-lg transition-all duration-300 hover:shadow-md;
+}
+
+.card-content {
+    @apply p-6;
+}
+
+.card-title {
+    @apply text-xl font-semibold text-gray-900 mb-2 flex items-center gap-3;
+}
+
+.card-description {
+    @apply text-gray-600 mb-4;
+}
+
+.btn-primary {
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+
+.btn-danger {
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500;
 }
