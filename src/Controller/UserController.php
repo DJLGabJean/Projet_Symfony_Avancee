@@ -11,6 +11,7 @@ use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 
 class UserController extends AbstractController
@@ -27,7 +28,7 @@ class UserController extends AbstractController
 
     #[Route('/admin/user/add/{newId}', name: 'admin_user_add', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function new(Request $request, EntityManagerInterface $em): Response
+    public function new(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
         $this->denyAccessUnlessGranted('USER_CREATE');
 
@@ -36,6 +37,12 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $plainPassword = $form->get('password')->getData();
+            
+            if ($plainPassword) {
+                $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+                $user->setPassword($hashedPassword);
+            }
             $em->persist($user);
             $em->flush();
 
@@ -49,16 +56,20 @@ class UserController extends AbstractController
 
     #[Route('/admin/user/edit/{id}', name: 'admin_user_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function edit(Request $request, User $user, EntityManagerInterface $em): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
         $this->denyAccessUnlessGranted('USER_EDIT', $user);
 
-        $form = $this->createForm(UserType::class, $user, [
-            'exclude_password' => true,
-        ]);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $plainPassword = $form->get('password')->getData();
+            
+            if ($plainPassword) {
+                $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+                $user->setPassword($hashedPassword);
+            }
             $em->flush();
 
             return $this->redirectToRoute('admin_user_list');
@@ -83,4 +94,6 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('admin_user_list');
     }
+
+    
 }
