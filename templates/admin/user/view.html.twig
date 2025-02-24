@@ -11,10 +11,14 @@
                     <i class="fas fa-users text-indigo-600"></i>
                     Gestion des Utilisateurs
                 </h1>
-                <a href="{{ path('admin_user_add', {newId: newId} )}}" class="btn-primary">
-                    <i class="fas fa-user-plus mr-2"></i>
-                    Nouvel Utilisateur
-                </a>
+                {% if app.user %}
+                <div class="flex items-center">
+                    <span class="text-sm text-gray-600">{{ app.user.email }}</span>
+                    <a href="{{ path('app_logout') }}" class="text-sm text-blue-600 hover:text-blue-800 ml-4">Déconnexion</a>
+                </div>
+                {% else %}
+                <a href="{{ path('app_login') }}" class="text-sm text-blue-600 hover:text-blue-800">Connexion</a>
+                {% endif %}
             </div>
         </div>
     </header>
@@ -29,8 +33,14 @@
             {% endfor %}
         {% endfor %}
 
+        {# New User Button #}
+        <a href="{{ path('admin_user_add', {newId: newId} )}}" class="btn-primary">
+            <i class="fas fa-user-plus mr-2"></i>
+                Nouvel Utilisateur
+        </a>
+
         {# Users Table #}
-        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg mt-4">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
