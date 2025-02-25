@@ -56,8 +56,8 @@
                             </td>
                             <td class="table-cell">
                                 <div class="flex space-x-2">
-                                    {% if is_granted('PRODUCT_EDIT', product) %} 
-                                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn-secondary">
+                                    {# {% if is_granted('PRODUCT_EDIT', product) %} 
+                                    <a href="{{ path('admin_product_edit', {'id': user.id}) }}" class="btn-secondary">
                                         <i class="fas fa-edit mr-2"></i>
                                         Modifier
                                     </a>
@@ -72,7 +72,7 @@
                                             Supprimer
                                         </button>
                                     </form>
-                                    {% endif %}
+                                    {% endif %} #}
                                 </div>
                             </td>
                         </tr>
