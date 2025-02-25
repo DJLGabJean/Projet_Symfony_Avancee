@@ -53,7 +53,7 @@ php bin/console tailwind:build
 ```
 
 > [!WARNING] 
-> Si vous voyez que tout ne s'affiche pas correctement même après avoir exécuter la commande d'avant, utiliser cette command en plus :
+> Si vous voyez que tout ne s'affiche pas correctement même après avoir exécuter la commande d'avant, utiliser cette commande en plus :
 
 ```bash
 php bin/console asset-map:compile
