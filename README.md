@@ -52,6 +52,13 @@ De même, exécuter la commande pour construire les assets de TailwindCSS :
 php bin/console tailwind:build
 ```
 
+> [!WARNING] 
+> Si vous voyez que tout ne s'affiche pas correctement même après avoir exécuter la commande d'avant, utiliser cette command en plus :
+
+```bash
+php bin/console asset-map:compile
+```
+
 Enfin, il ne vous reste plus qu'à exécuter XAMPP pour pouvoir accéder au site web via ce lien :
 
 http://localhost/Projet_Symfony_Avancee/public/home
