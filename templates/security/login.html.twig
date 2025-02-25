@@ -7,7 +7,7 @@
   <div class="w-full max-w-md p-8 space-y-4 bg-gray-100 rounded-lg shadow-2xl">
 
     <!-- Titre -->
-    <h2 class="text-3xl font-bold text-center text-gray-900">Log in</h2>
+    <h2 class="text-3xl font-bold text-center text-gray-900">Connexion</h2>
 
     <!-- Formulaire de connexion -->
     <form method="post" class="space-y-4">
@@ -17,7 +17,7 @@
 
       <!-- Champ E-mail -->
       <div class="space-y-2">
-        <label class="text-sm font-medium leading-none" for="inputEmail">E-Mail Address</label>
+        <label class="text-sm font-medium leading-none" for="inputEmail">Adresse mail</label>
         <input
           type="text"
           name="_username"
@@ -31,7 +31,7 @@
 
       <!-- Champ Mot de passe -->
       <div class="space-y-2">
-        <label class="text-sm font-medium leading-none" for="inputPassword">Password</label>
+        <label class="text-sm font-medium leading-none" for="inputPassword">Mot de passe</label>
         <input
           type="password"
           name="_password"
@@ -50,7 +50,7 @@
         class="w-full h-10 px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
         {% if app.user is not null %}disabled{% endif %}
       >
-        Login
+        Se connecter
       </button>
     </form>
 
@@ -60,19 +60,19 @@
         href="{{ path('app_home') }}"
         class="inline-flex justify-center w-full h-10 px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
       >
-        Return to home
+        Retourner à l'accueil
       </a>
     </div>
 
     <!-- Bouton de déconnexion (si connecté) -->
     {% if app.user is not null %}
       <div class="mt-4">
-        <p class="mb-2">You are signed in as {{ app.user.email }}</p>
+        <p class="mb-2">Vous êtes connecté en tant que {{ app.user.email }}</p>
         <a
           href="{{ path('app_logout') }}"
           class="inline-flex justify-center w-full h-10 px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
         >
-          Logout
+          Déconnexion
         </a>
       </div>
 
