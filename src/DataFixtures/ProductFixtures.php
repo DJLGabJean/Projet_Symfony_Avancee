@@ -41,21 +41,6 @@ class ProductFixtures extends Fixture
                 'description' => 'Statue en résine à l\'échelle 1/8 de All Might, symbolisant la paix, par First 4 Figures.',
                 'price' => 269.99,
             ],
-            [
-                'name' => 'Manga My Hero Academia Tome 39 - Édition Collector',
-                'description' => 'Le tome 39 de My Hero Academia en édition collector, incluant une jaquette alternative, un mini-thermo, un patch à coudre, une grenade anti-stress et une banane.',
-                'price' => 15.99,
-            ],
-            [
-                'name' => 'Manga My Hero Academia Tome 38 - Édition Collector',
-                'description' => 'Le tome 38 de My Hero Academia en édition collector, avec des goodies exclusifs.',
-                'price' => 15.99,
-            ],
-            [
-                'name' => 'Manga My Hero Academia Tome 37 - Édition Collector',
-                'description' => 'Le tome 37 de My Hero Academia en édition collector, accompagné d\'accessoires spéciaux.',
-                'price' => 15.99,
-            ],
         ];
 
         foreach ($products as $productData) {
