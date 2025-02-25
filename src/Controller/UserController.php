@@ -60,16 +60,12 @@ class UserController extends AbstractController
     {
         $this->denyAccessUnlessGranted('USER_EDIT', $user);
 
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $user, ['is_edit' => true]);
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $plainPassword = $form->get('password')->getData();
-            
-            if ($plainPassword) {
-                $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
-                $user->setPassword($hashedPassword);
-            }
+
             $em->flush();
 
             return $this->redirectToRoute('admin_user_list');

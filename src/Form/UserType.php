@@ -43,20 +43,24 @@ class UserType extends AbstractType
                 ],
                 'multiple' => true,
                 'expanded' => true,
-            ])
-            ->add('password', PasswordType::class, [
-                'label' => 'Mot de passe',
-                'attr' => [
-                    'placeholder' => 'Entrez le mot de passe',
-                ],
-            ])
-        ;
+                ]);
+    
+            if (!$options['is_edit']) {
+                $builder->add('password', PasswordType::class, [
+                    'label' => 'Mot de passe',
+                    'attr' => [
+                        'placeholder' => 'Entrez un mot de passe',
+                    ]
+                ]);
+        
+            }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'is_edit' => false,
         ]);
     }
 }
