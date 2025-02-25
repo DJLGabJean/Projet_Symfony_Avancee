@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Utilisateurs{% endblock %}
+
+{% block body %}
+    {# Header #}
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-3">
+                    <a href="{{ path('app_home') }}" class="text-indigo-600 hover:text-indigo-800">
+                        <svg class="block size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 9.75L12 3l9 6.75m-12 9.75V10.5m0 9.75H7.5a2.25 2.25 0 01-2.25-2.25v-4.5m4.5 6.75h3m0 0V10.5m0 9.75h4.5a2.25 2.25 0 002.25-2.25v-4.5m-4.5 6.75V10.5" />
+                        </svg>
+                    </a>
+                    Gestion des produits
+                </h1>
+                {% if app.user %}
+                <div class="flex items-center">
+                    <span class="text-sm text-gray-600">{{ app.user.email }}</span>
+                    <a href="{{ path('app_logout') }}" class="text-sm text-blue-600 hover:text-blue-800 ml-4">Déconnexion</a>
+                </div>
+                {% else %}
+                <a href="{{ path('app_login') }}" class="text-sm text-blue-600 hover:text-blue-800">Connexion</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+
+    {# Products Table #}
+    <div class="bg-white shadow overflow-hidden sm:rounded-lg mt-4">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="table-header">ID</th>
+                        <th scope="col" class="table-header">Nom</th>
+                        <th scope="col" class="table-header">Description</th>
+                        <th scope="col" class="table-header">Prix</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    {% for product in products %}
+                        <tr>
+                            <td class="table-cell">
+                                {{ product.id }}
+                            </td>
+                            <td class="table-cell">
+                                {{ product.name }}
+                            </td>
+                            <td class="table-cell">
+                                {{ product.description }}
+                            </td>
+                            <td class="table-cell">
+                                {{ product.price }} €
+                            </td>
+                            <td class="table-cell">
+                                <div class="flex space-x-2">
+                                    {% if is_granted('PRODUCT_EDIT', product) %} 
+                                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn-secondary">
+                                        <i class="fas fa-edit mr-2"></i>
+                                        Modifier
+                                    </a>
+                                    {% endif %}
+
+                                    {% if is_granted('PRODUCT_DELETE', product) %} 
+                                    <form method="POST" action="{{ path('admin_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');" class="inline">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                                        <button type="submit" class="btn-secondary text-red-600 hover:text-red-700">
+                                            <i class="fas fa-trash-alt mr-2"></i>
+                                            Supprimer
+                                        </button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock %}
