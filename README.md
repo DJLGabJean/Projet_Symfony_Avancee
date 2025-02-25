@@ -91,7 +91,7 @@ _Mot de passe_ : `manager123`
 
 Pour pouvoir importer vos produits en format CSV, veuillez utiliser cette commande symfony :
 
-php bin/console app:import-products-csv {remplacer par le nom du chemin de votre fichier}
+php bin/console app:import-products-csv __(remplacer par le nom du chemin de votre fichier)__
 
 **Exemple** :
 
