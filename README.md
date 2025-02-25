@@ -102,6 +102,10 @@ php bin/console app:import-products-csv csv/products.csv
 > [!NOTE]  
 > Vous pouvez utiliser la commande d'exemple pour voir ce que cela donne
 
+## Fonctionnalités manquantes 
+
+• Gestion des Clients
+• Tests
 
 
 
