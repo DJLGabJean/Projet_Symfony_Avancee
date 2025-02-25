@@ -51,7 +51,10 @@ De même, exécuter la commande pour construire les assets de TailwindCSS :
 ```bash
 php bin/console tailwind:build
 ```
-Enfin, ils ne vous reste plus qu'à exécuter XAMPP pour pouvoir accéder au site web !!!!
+
+Enfin, il ne vous reste plus qu'à exécuter XAMPP pour pouvoir accéder au site web via ce lien :
+
+http://localhost/Projet_Symfony_Avancee/public/home
 
 ## Droits d'utilisateurs
 
@@ -91,8 +94,6 @@ php bin/console app:import-products-csv csv/products.csv
 
 > [!NOTE]  
 > Vous pouvez utiliser la commande d'exemple pour voir ce que cela donne
-
-D'autres choses vont venir au fur à mesure de la journée...
 
 
 
