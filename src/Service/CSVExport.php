@@ -21,7 +21,7 @@ class CSVExport
         $csv = Writer::createFromString('');
         
         // En-tête CSV
-        $csv->insertOne(['Nom', 'Description', 'Prix']);
+        $csv->insertOne(['name', 'description', 'price']);
 
         // Ajout des données
         foreach ($products as $product) {
