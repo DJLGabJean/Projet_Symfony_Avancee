@@ -85,7 +85,9 @@ php bin/console app:import-products-csv {remplacer par le nom de votre chemin de
 
 **Exemple** :
 
+```bash
 php bin/console app:import-products-csv csv/products.csv
+```
 
 > [!NOTE]  
 > Vous pouvez utiliser la commande d'exemple pour voir ce que cela donne
