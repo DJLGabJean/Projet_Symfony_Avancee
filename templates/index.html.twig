@@ -33,7 +33,7 @@
             {# Users Section #}
             {% if is_granted('ROLE_ADMIN') %}
             <div class="mb-8">
-                <h2 class="text-lg font-semibold text-gray-900 mb-2">Gestion des Utilisateurs</h2>
+                <h2 class="text-lg font-semibold text-gray-900 mb-2">Gestion des utilisateurs</h2>
                 <p class="text-gray-600 mb-2 ml-4">Gérez les comptes utilisateurs, les rôles et les permissions du système.</p>
                 <a href="{{ path('admin_user_list') }}" class="text-blue-600 hover:text-blue-800 ml-4">Accéder</a>
             </div>
@@ -42,7 +42,7 @@
             {# Products Section #}
             {% if is_granted('ROLE_USER') %}
             <div class="mb-8">
-                <h2 class="text-lg font-semibold text-gray-900 mb-2">Gestion des Produits</h2>
+                <h2 class="text-lg font-semibold text-gray-900 mb-2">Gestion des produits</h2>
                 <p class="text-gray-600 mb-2 ml-4">Consultez et gérez l'inventaire des produits disponibles.</p>
                 <a href="{{ path('product_list') }}" class="text-blue-600 hover:text-blue-800 ml-4">Accéder</a>
             </div>
@@ -51,7 +51,7 @@
             {# Clients Section #}
             {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER') %}
             <div class="mb-8">
-                <h2 class="text-lg font-semibold text-gray-900 mb-2">Gestion des Clients</h2>
+                <h2 class="text-lg font-semibold text-gray-900 mb-2">Gestion des clients</h2>
                 <p class="text-gray-600 mb-2 ml-4">Gérez votre base de clients et leurs informations.</p>
                 <a href="{{ path('admin_client_list') }}" class="text-blue-600 hover:text-blue-800 ml-4">Accéder</a>
             </div>
