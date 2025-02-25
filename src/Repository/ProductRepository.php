@@ -16,6 +16,15 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    public function getNewId(): int
+    {
+        $query = $this->createQueryBuilder('u')
+            ->select('MAX(u.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $query + 1;
+    }
     public function findAllSortedByPriceDesc(): array
     {
         return $this->createQueryBuilder('p')
