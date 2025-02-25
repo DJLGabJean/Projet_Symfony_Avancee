@@ -51,6 +51,44 @@ De même, exécuter la commande pour construire les assets de TailwindCSS :
 ```bash
 php bin/console tailwind:build
 ```
+Enfin, ils ne vous reste plus qu'à exécuter XAMPP pour pouvoir accéder au site web !!!!
+
+## Droits d'utilisateurs
+
+'ROLE_USER' est donné pour tous les utilisateurs 
+
+**Exemple d'utilisateur** :
+
+_Utilisateur_ : `'user@example.com`
+
+_Mot de passe_ : `user123`
+
+
+'ROLE_ADMIN' est donné uniquement à un **seul utilisateur** actuellement :
+
+_Admin_ : `admin@example.com`
+
+_Mot de passe_ : `admin123`
+
+'ROLE_MANAGER' est donné uniquement à un **seul utilisateur** actuellement : 
+
+_Manager_ : `manager@example.com`
+
+_Mot de passe_ : `manager123`
+
+
+## Commande pour importer des produits en format CSV
+
+Pour pouvoir importer vos produits en format CSV, veuillez utiliser cette commande symfony :
+
+php bin/console app:import-products-csv {remplacer par le nom de votre chemin de votre fichier}
+
+**Exemple** :
+
+php bin/console app:import-products-csv csv/products.csv
+
+> [!NOTE]  
+> Vous pouvez utiliser la commande d'exemple pour voir ce que cela donne
 
 Enfin, ils ne vous reste plus qu'à exécuter XAMPP pour pouvoir accéder au site web !!!!
 
